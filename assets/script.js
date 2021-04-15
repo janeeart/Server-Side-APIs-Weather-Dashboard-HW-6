@@ -12,19 +12,23 @@ function renderButtons (){
     for(i=0; i<cityHistoryArr.length; i++){
         var newLi = $("<li>")
         var newBtn = $("<button>")
-        // newBtn.setAttribute("class", "city-button")
+        newBtn.addClass("city-button");
         newBtn.text(cityHistoryArr[i])
         newLi.append(newBtn)
         cities.append(newLi)
-    //    newBtn.addEventListener("click", handleBtnSubmit)
+    newBtn.on("click", handleBtnSubmit)
     }
-    
+
 }
 
-// function handleBtnSubmit() {
-//     console.log("works");
-// }
+function handleBtnSubmit() {
+    console.log("works");
+var searchInputVal = this.textContent;
+console.log(searchInputVal);
 
+submit(searchInputVal)
+
+}
 
 
 
