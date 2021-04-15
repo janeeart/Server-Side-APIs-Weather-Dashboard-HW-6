@@ -11,25 +11,19 @@ function renderButtons (){
 
     for(i=0; i<cityHistoryArr.length; i++){
         var newLi = $("<li>")
-        var newBtn =$("<button>")
+        var newBtn = $("<button>")
+        // newBtn.setAttribute("class", "city-button")
         newBtn.text(cityHistoryArr[i])
         newLi.append(newBtn)
         cities.append(newLi)
-        
+    //    newBtn.addEventListener("click", handleBtnSubmit)
     }
     
-
-    // function handleBtnSubmit() {
-    //  document.querySelector(".form-control").text(cityButton)
-    // submit(value);
-    
-    // }
-    // cityButton.on('click', function (){
-    //     handleBtnSubmit()
-        
-    // });
 }
 
+// function handleBtnSubmit() {
+//     console.log("works");
+// }
 
 
 
@@ -119,5 +113,5 @@ function printCurrentDay(currentDay, uvi) {
 
 
 
-renderButtons()
+// renderButtons()
 document.querySelector(".btn").addEventListener("click", submit)
