@@ -26,22 +26,12 @@ function handleBtnSubmit() {
 var searchInputVal = this.textContent;
 console.log(searchInputVal);
 
-submit(searchInputVal)
+GetWeatherData(searchInputVal)
 
 }
 
+function GetWeatherData(value) {
 
-
-function submit (e) {
-    e.preventDefault()
-
-    var value = document.querySelector(".form-control").value
-    cityHistoryArr.push(value)
-    if(cityHistoryArr.length>8){
-        cityHistoryArr.splice(0,1)
-    }
-    localStorage.setItem("history", JSON.stringify(cityHistoryArr))
-    renderButtons()
     fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=c67ede96dd8b09ac55a1a15325cc40ad&units=imperial`)
         .then(res => res.json())
         .then(fiveDay => {
@@ -62,6 +52,41 @@ function submit (e) {
                     printCurrentDay(currentDay, current.uvi)
                 })
         })
+
+}
+
+
+function submit (e) {
+    e.preventDefault()
+
+    var value = document.querySelector(".form-control").value
+    cityHistoryArr.push(value)
+    if(cityHistoryArr.length>8){
+        cityHistoryArr.splice(0,1)
+    }
+    localStorage.setItem("history", JSON.stringify(cityHistoryArr))
+    renderButtons()
+    GetWeatherData(value)
+    // fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=c67ede96dd8b09ac55a1a15325cc40ad&units=imperial`)
+    //     .then(res => res.json())
+    //     .then(fiveDay => {
+    //         var filteredArr = fiveDay.list.filter(query => query.dt_txt.includes("12:00:00"))
+    //        // console.log(filteredArr);
+    //         printForcastCards(filteredArr);
+            
+    // })
+
+    // fetch(`http://api.openweathermap.org/data/2.5/weather?q=${value}&appid=c67ede96dd8b09ac55a1a15325cc40ad&units=imperial`)
+    //     .then(res => res.json())
+    //     .then(currentDay => {
+    //         console.log(currentDay)
+            
+    //         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${currentDay.coord.lat}&lon=${currentDay.coord.lon}&appid=c67ede96dd8b09ac55a1a15325cc40ad`)
+    //             .then(res => res.json())
+    //             .then(({current}) => {
+    //                 printCurrentDay(currentDay, current.uvi)
+    //             })
+    //     })
         // .then(function(currentDay) {
         //     // printCurrentDay(currentDay)
         // })
